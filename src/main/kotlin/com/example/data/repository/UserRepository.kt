@@ -1,8 +1,8 @@
-package com.example.controller
+package com.example.data.repository
 
 import com.example.data.models.User
 
-interface UserController {
+interface UserRepository {
 
     suspend fun createUser(user: User)
 
@@ -10,5 +10,6 @@ interface UserController {
 
     suspend fun getUserByEmail(email : String): User?
 
+    suspend fun doesPasswordForUserMatch(email: String, enteredPassword: String): Boolean
 
 }

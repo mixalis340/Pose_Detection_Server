@@ -1,16 +1,17 @@
 package com.example.plugins
 
-import com.example.routes.userRoutes
+import com.example.data.repository.UserRepository
+import com.example.routes.createUserRoute
+import com.example.routes.loginUser
 import io.ktor.server.routing.*
-import io.ktor.http.*
-import io.ktor.server.http.content.*
 import io.ktor.server.application.*
-import io.ktor.server.response.*
-import io.ktor.server.request.*
+import org.koin.ktor.ext.inject
 
 fun Application.configureRouting() {
-    
+
+    val userRepository: UserRepository by inject()
         routing {
-            userRoutes()
+            createUserRoute(userRepository)
+            loginUser(userRepository)
         }
 }
