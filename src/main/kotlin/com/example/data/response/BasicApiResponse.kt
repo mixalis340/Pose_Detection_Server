@@ -1,4 +1,4 @@
-package com.example.response
+package com.example.data.response
 
 data class BasicApiResponse(
     val successful: Boolean,

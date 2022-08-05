@@ -1,4 +1,4 @@
-package com.example.requests
+package com.example.data.requests
 
 data class CreateAccountRequest(
     val email: String,

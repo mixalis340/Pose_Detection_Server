@@ -1,6 +1,8 @@
-package com.example.data.repository
+package com.example.data.repository.user
 
 import com.example.data.models.User
+import com.example.data.repository.user.UserRepository
+import com.example.data.requests.UpdateProfileRequest
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.eq
 
@@ -20,6 +22,25 @@ class UserRepositoryImpl(
 
     override suspend fun getUserByEmail(email: String): User? {
         return  users.findOne(User::email eq email)
+    }
+
+    override suspend fun updateUser(
+        userId: String,
+        updateProfileRequest: UpdateProfileRequest,
+        profileImageUrl: String
+    ): Boolean {
+        val user = getUserById(userId) ?: return false
+        return users.updateOneById(
+            id = userId,
+            update = User(
+                email = user.email,
+                username = updateProfileRequest.username,
+                password = user.password,
+                profileImageUrl = profileImageUrl,
+                bio = updateProfileRequest.bio,
+                id = user.id
+            )
+        ).wasAcknowledged()
     }
 
     override suspend fun doesPasswordForUserMatch(
