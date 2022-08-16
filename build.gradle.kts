@@ -48,4 +48,7 @@ dependencies {
     testImplementation("io.insert-koin:koin-test:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
+
+    // Gson
+    testImplementation("com.google.code.gson:gson:2.8.8")
 }

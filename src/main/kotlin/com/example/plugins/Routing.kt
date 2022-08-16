@@ -1,9 +1,6 @@
 package com.example.plugins
 
-import com.example.routes.createUserRoute
-import com.example.routes.getUserProfile
-import com.example.routes.loginUser
-import com.example.routes.updateUserProfile
+import com.example.routes.*
 import com.example.service.UserService
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
@@ -20,6 +17,7 @@ fun Application.configureRouting() {
     val jwtSecret = environment.config.property("jwt.secret").getString()
 
     routing {
+        authenticate()
         createUserRoute(userService)
         loginUser(
             userService = userService,

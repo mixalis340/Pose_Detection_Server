@@ -18,6 +18,7 @@ class UserService (
     suspend fun getUserProfile(userId: String, callUserId: String) : ProfileResponse? {
         val user = userRepository.getUserById(userId) ?: return  null
         return  ProfileResponse(
+                userId = user.id,
                 username = user.username,
                 bio = user.bio,
                 profilePictureUrl = user.profileImageUrl,
@@ -35,10 +36,13 @@ class UserService (
 
     suspend fun updateUser(
         userId: String,
-        profileImageUrl: String,
+        profileImageUrl: String?,
         updateProfileRequest: UpdateProfileRequest
     ): Boolean {
-        return userRepository.updateUser(userId,updateProfileRequest,profileImageUrl)
+        return userRepository.updateUser(
+            userId,
+            profileImageUrl,
+            updateProfileRequest)
     }
     suspend fun doesPasswordMatchForUser(request: LoginRequest) : Boolean {
         return userRepository.doesPasswordForUserMatch(

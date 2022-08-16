@@ -13,5 +13,10 @@ interface UserRepository {
 
     suspend fun doesPasswordForUserMatch(email: String, enteredPassword: String): Boolean
 
-    suspend fun updateUser(userId: String, updateProfileRequest: UpdateProfileRequest, profileImageUrl: String): Boolean
+    suspend fun updateUser(
+        userId: String,
+        profileImageUrl: String?,
+        updateProfileRequest: UpdateProfileRequest
+    )
+    : Boolean
 }
