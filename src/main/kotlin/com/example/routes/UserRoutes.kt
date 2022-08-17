@@ -77,10 +77,12 @@ fun Route.updateUserProfile(userService: UserService) {
                         }
                     }
                     is PartData.FileItem -> {
-                        val fileBytes = partData.streamProvider().readBytes()
-                        val fileExtension = partData.originalFileName?.takeLastWhile { it != '.' }
-                        fileName = UUID.randomUUID().toString() + "." + fileExtension
-                        File("$PROFILE_PICTURE_PATH$fileName").writeBytes(fileBytes)
+                        if(partData.name == "profile_picture") {
+                            val fileBytes = partData.streamProvider().readBytes()
+                            val fileExtension = partData.originalFileName?.takeLastWhile { it != '.' }
+                            fileName = UUID.randomUUID().toString() + "." + fileExtension
+                            File("$PROFILE_PICTURE_PATH$fileName").writeBytes(fileBytes)
+                        }
                     }
 
                     else -> {Unit}

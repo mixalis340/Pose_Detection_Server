@@ -106,7 +106,7 @@ fun Route.loginUser(
                     successful = true,
                     data = AuthResponse(
                         userId = user.id,
-                        token = token
+                        token  =  token
                         )
                 )
             )
