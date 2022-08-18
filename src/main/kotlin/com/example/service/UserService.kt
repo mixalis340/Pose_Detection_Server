@@ -6,6 +6,7 @@ import com.example.data.requests.CreateAccountRequest
 import com.example.data.requests.LoginRequest
 import com.example.data.requests.UpdateProfileRequest
 import com.example.data.response.ProfileResponse
+import com.example.util.Constants
 
 class UserService (
     private  val userRepository: UserRepository
@@ -57,7 +58,7 @@ class UserService (
                 email = request.email,
                 username = request.username,
                 password = request.password,
-                profileImageUrl = "",
+                profileImageUrl = Constants.DEFAULT_PROFILE_PICTURE_PATH,
                 bio = ""
             )
       )

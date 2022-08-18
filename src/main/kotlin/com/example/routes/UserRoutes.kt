@@ -88,7 +88,7 @@ fun Route.updateUserProfile(userService: UserService) {
                     else -> {Unit}
                 }
             }
-
+            
             val profilePictureUrl = "${BASE_URL}profile_pictures/$fileName"
 
             updateProfileRequest?.let { request ->
